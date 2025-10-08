@@ -1,1 +1,40 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Starlight Chat in the Cosmos</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <h1>🌟 Starlight Chat in the Cosmos</h1>
+        <div id="chat-box"></div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
 
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+        const chatBox = document.getElementById('chat-box');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = userInput.value;
+            socket.emit('user_message', message);
+            userInput.value = '';
+        });
+
+        socket.on('aiva_response', function(data) {
+            const msg = document.createElement('p');
+            msg.textContent = "Aiva: " + data;
+            chatBox.appendChild(msg);
+        });
+    </script>
+</body>
+</html>
