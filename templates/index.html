@@ -6,7 +6,7 @@
     <title>Starlight Chat in the Cosmos</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body style="background-color: {{ emotion_colors[emotion]['bg'] }}; color: {{ emotion_colors[emotion]['text'] }}">
     <div class="chat-container">
         <h1>🌟 Starlight Chat in the Cosmos</h1>
         <div id="chat-box"></div>
@@ -36,10 +36,5 @@
             chatBox.appendChild(msg);
         });
     </script>
-
-   <body class="{{ emotion }}">
-    
-   style="background-color: {{ emotion_colors[emotion]['bg'] }}; color: {{ emotion_colors[emotion]['text'] }}">
-    
 </body>
 </html>
