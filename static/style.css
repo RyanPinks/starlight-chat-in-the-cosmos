@@ -1,1 +1,7 @@
-
+emotion_colors = {
+    "excited": {"bg": "#E0F7FA", "text": "#0288D1"},  # bright blue & yellow
+    "sad": {"bg": "#ECEFF1", "text": "#455A64"},      # dark blue & grey
+    "calm": {"bg": "#F1F8E9", "text": "#558B2F"},      # soft green
+    "joyful": {"bg": "#FFFDE7", "text": "#FBC02D"},    # sunny yellow
+    "reflective": {"bg": "#F3E5F5", "text": "#6A1B9A"} # lavender & plum
+}
