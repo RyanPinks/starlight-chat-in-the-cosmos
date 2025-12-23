@@ -24,11 +24,5 @@ def handle_message(message):
     memory.record_message("Aiva", full_response)
     emit('aiva_response', full_response)
 
-return render_template("index.html", response=response, emotion="excited")
-
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
-
-app.run(debug=True, port=5000)
-
-
+    socketio.run(app, debug=True, port=5000)
