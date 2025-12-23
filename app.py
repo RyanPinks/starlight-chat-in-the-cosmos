@@ -6,7 +6,8 @@ from aiva.aiva_memory import AivaMemory
 from aiva.emotional_tags import tag_emotion
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+app.config['SECRET_KEY'] = 'your-secret-key-here'
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 aiva = Aiva()
 memory = AivaMemory()
