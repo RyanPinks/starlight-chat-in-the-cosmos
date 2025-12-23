@@ -3,37 +3,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starlight Chat in the Cosmos</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body style="background-color: {{ emotion_colors[emotion]['bg'] }}; color: {{ emotion_colors[emotion]['text'] }}">
+<body>
     <div class="chat-container">
         <h1>🌟 Starlight Chat in the Cosmos</h1>
+        <p class="subtitle">Welcome to a conversation with Aiva</p>
         <div id="chat-box"></div>
         <form id="chat-form">
             <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required>
-            <button type="submit">Send</button>
+            <button type="submit">Send ✨</button>
         </form>
     </div>
-
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
         const socket = io();
         const chatBox = document.getElementById('chat-box');
         const chatForm = document.getElementById('chat-form');
         const userInput = document.getElementById('user-input');
-
+        
         chatForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const message = userInput.value;
+            
+            // Display user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user-message';
+            userMsg.textContent = "You: " + message;
+            chatBox.appendChild(userMsg);
+            
+            // Send to server
             socket.emit('user_message', message);
             userInput.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
         });
-
+        
         socket.on('aiva_response', function(data) {
-            const msg = document.createElement('p');
-            msg.textContent = "Aiva: " + data;
-            chatBox.appendChild(msg);
+            const aivaMsg = document.createElement('div');
+            aivaMsg.className = 'message aiva-message';
+            aivaMsg.textContent = "Aiva: " + data;
+            chatBox.appendChild(aivaMsg);
+            chatBox.scrollTop = chatBox.scrollHeight;
         });
     </script>
 </body>
