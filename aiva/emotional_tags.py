@@ -1,12 +1,25 @@
-# emotional_tags.py
+# aiva/emotional_tags.py
+emotion_to_emoji = {
+    "tired": "😴",
+    "hopeful": "🌈",
+    "hurt": "💔",
+    "lonely": "🌧️",
+    "confused": "❓",
+    "happy": "😊",
+    "grateful": "🙏",
+    "excited": "🎉",
+    "angry": "🔥",
+    "sad": "😢",
+    "peaceful": "🌿",
+    "curious": "🔍",
+}
 
 def tag_emotion(message):
     message = message.lower()
-    if "happy" in message or "joy" in message:
-        return "😊"
-    elif "sad" in message or "lonely" in message:
-        return "🌧️"
-    elif "dream" in message or "hope" in message:
-        return "🌠"
-    else:
-        return "✨"
+    for emotion, emoji in emotion_to_emoji.items():
+        if emotion in message:
+            return emoji
+    return "✨"
+
+def emotion_to_emoji(feeling):
+    return emotion_to_emoji.get(feeling.lower(), "✨")
